@@ -15,7 +15,8 @@ input,
 textarea,
 select,
 a,
-a:active {
+a:active,
+a:visited {
   text-decoration: none;
   outline: none;
   -webkit-tap-highlight-color: transparent;
@@ -62,6 +63,9 @@ a:active {
   }
   .text-#{$color} {
     color: $value;
+  }
+  .outline-#{$color} {
+    border: 1px solid $value;
   }
   .dark {
     .dark\:bg-#{$color} {
