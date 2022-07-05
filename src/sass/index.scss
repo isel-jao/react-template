@@ -1,5 +1,84 @@
+@use "sass:math";
+@import "config";
+@import "spacing";
+@import "grid";
+@import "colors";
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+button,
+input,
+textarea,
+select,
+a,
+a:active {
+  text-decoration: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.flex {
+  display: flex;
+}
+
+.jutify-center {
+  justify-content: center;
+}
+.jutify-between {
+  justify-content: space-between;
+}
+.jutify-around {
+  justify-content: space-around;
+}
+.align-center {
+  align-items: center;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+.flex-col {
+  flex-direction: column;
+}
+@for $i from 1 through 12 {
+  .gap-#{$i} {
+    gap: #{$i * 10}px;
+  }
+}
+
+.absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@each $color, $value in $colors {
+  .bg-#{$color} {
+    background-color: $value;
+  }
+  .text-#{$color} {
+    color: $value;
+  }
+  .dark {
+    .dark\:bg-#{$color} {
+      background-color: $value;
+    }
+    .dark\:text-#{$color} {
+      color: $value;
+    }
+  }
+}
+
+.debug {
+  border: 1px solid red;
+  & > * {
+    border: 1px solid green;
+    & > * {
+      border: 1px solid blue;
+    }
+  }
 }

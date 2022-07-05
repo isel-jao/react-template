@@ -1,0 +1,23 @@
+$breaking-points: (
+  xxs 320px 2,
+  xs 480px 4,
+  sm 768px 8,
+  md 1024px 12,
+  lg 1280px 16,
+  xl 1440px 18,
+  xxl 1680px 21,
+  xxxl 1920px 24
+);
+
+$spacings: (
+  1: 0.25rem,
+  2: 0.5rem,
+  3: 1rem,
+  4: 2rem,
+  5: 4rem,
+  6: 8rem,
+  7: 16rem,
+  8: 32rem,
+  9: 64rem,
+  10: 128rem,
+);
