@@ -86,3 +86,13 @@ a:visited {
     }
   }
 }
+
+.collapse-target {
+  transition: all 0.25s linear;
+  overflow: hidden;
+}
+
+.collapsed {
+  max-height: 0;
+  padding: 0;
+}
