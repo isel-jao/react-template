@@ -2,7 +2,7 @@
 import "./App.css";
 
 function App() {
-  return <div className="App">App</div>;
+  return <div className="App flex-center">App</div>;
 }
 
 export default App;
