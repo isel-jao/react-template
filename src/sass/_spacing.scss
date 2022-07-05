@@ -76,3 +76,9 @@
     width: $i * 25%;
   }
 }
+
+@each $key, $value in $radius {
+  .rounded-#{$key} {
+    border-radius: $value;
+  }
+}
