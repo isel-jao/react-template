@@ -1,0 +1,29 @@
+%ralative {
+  position: relative;
+}
+
+.slide-up {
+  animation: slide-up 0.5s ease-in-out;
+}
+
+.slide-right {
+  animation: slide-right 0.5s ease-in-out;
+}
+
+@keyframes slide-up {
+  from {
+    margin-top: 0.5rem;
+  }
+  to {
+    margin-top: inherit;
+    transform: scale(1);
+  }
+}
+@keyframes slide-right {
+  from {
+    transform: translateX(-2rem) scale(0.8);
+  }
+  to {
+    transform: translateX(0);
+  }
+}

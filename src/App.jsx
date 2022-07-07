@@ -1,60 +1,59 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import { Routes, Route, Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useTranslation, Trans } from "react-i18next";
 import { useEffect } from "react";
+import i18next from "i18next";
+import routes from "./routes";
+import SideNav from "./components/side-nav";
+import TopBar from "./components/top-bar";
+import NotFound from "./components/not-found";
+const View = (props) => {
+  const parent = props.parent || "";
+};
 
-const Home = () => <div> Home </div>;
-const About = () => <div> About </div>;
-const Component = () => <div>component</div>;
-const NotFound = () => <div>404</div>;
+const myRoutes = routes.filter((route) => route.index);
 
 const RouterView = () => {
   const linkClass = "outline-cyan-500";
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/component" element={<Component />} />
+      {myRoutes.map((route, index) => {
+        return <Route key={index} path={route.index} element={route.element} />;
+      })}
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };
 
-const SideNav = () => {
-  return (
-    <div className="w-full flex jutify-center pt-3">
-      <Link className="px-3 py-2 text-cyan-100 bg-cyan-500 rounded-md" to="/">
-        Home
-      </Link>
-      <Link className="px-3 py-2 text-cyan-500" to="/about">
-        About
-      </Link>
-      <Link className="px-3 py-2 text-cyan-500" to="/component">
-        Compoenent
-      </Link>
-    </div>
-  );
-};
-
-const TopBar = () => {
-  return <div className="flex justify-between">Top Bar</div>;
-};
-
 function App() {
   const config = useSelector((state) => state.config);
-
   const { t } = useTranslation();
-
+  const dispatch = useDispatch();
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      if (window.innerWidth < 768) {
+        dispatch({ type: "SET_LAYOUT", payload: "mobile" });
+      } else if (window.innerWidth < 1024) {
+        dispatch({ type: "SET_LAYOUT", payload: "tablete" });
+      } else {
+        dispatch({ type: "SET_LAYOUT", payload: "desktop" });
+      }
+    });
+  }, []);
   return (
     <div className={`App ${config.theme}`}>
       <div
-        className={`h-screen  dark:bg-${config.primaryColor}-900 dark:text-${config.primaryColor}-200 bg-${config.primaryColor}-50 text-${config.primaryColor}-800`}
+        className={`h-screen  dark:bg-${config.primaryColor}-900 dark:text-${config.primaryColor}-200 bg-${config.primaryColor}-100 text-${config.primaryColor}-800`}
       >
-        <TopBar />
-        <SideNav />
-
-        <RouterView />
+        <TopBar height="3rem" />
+        <div className="flex">
+          <SideNav width="10rem" />
+          <div className="flex w-full justify-center align-center  text-dark">
+            <RouterView />
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -3,6 +3,8 @@
 @import "spacing";
 @import "grid";
 @import "colors";
+@import "text";
+@import "aniimations";
 
 * {
   margin: 0;
@@ -19,19 +21,21 @@ a:active,
 a:visited {
   text-decoration: none;
   outline: none;
+  border: none;
   -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
 }
 .flex {
   display: flex;
 }
 
-.jutify-center {
+.justify-center {
   justify-content: center;
 }
-.jutify-between {
+.justify-between {
   justify-content: space-between;
 }
-.jutify-around {
+.justify-around {
   justify-content: space-around;
 }
 .align-center {
@@ -65,7 +69,7 @@ a:visited {
     color: $value;
   }
   .outline-#{$color} {
-    border: 1px solid $value;
+    border: 2px solid $value;
   }
   .dark {
     .dark\:bg-#{$color} {
@@ -73,6 +77,31 @@ a:visited {
     }
     .dark\:text-#{$color} {
       color: $value;
+    }
+  }
+  .hover\:bg-#{$color} {
+    &:hover {
+      background-color: $value;
+    }
+  }
+  .hover\:text-#{$color} {
+    &:hover {
+      color: $value;
+    }
+  }
+  .focus\:bg-#{$color} {
+    &:focus {
+      background-color: $value;
+    }
+  }
+  .focus\:text-#{$color} {
+    &:focus {
+      color: $value;
+    }
+  }
+  .active\:bg-#{$color} {
+    &:active {
+      background-color: $value;
     }
   }
 }
@@ -86,13 +115,53 @@ a:visited {
     }
   }
 }
+[toggle] {
+  cursor: pointer;
+}
 
 .collapse-target {
-  transition: all 0.25s linear;
   overflow: hidden;
+  transition: max-height 0.25s linear;
+  max-height: 200px;
 }
 
 .collapsed {
   max-height: 0;
   padding: 0;
+}
+
+.shadow-sm {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.25);
+}
+.shadow-md {
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
+}
+.shadow-lg {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25);
+}
+.shadow-xl {
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.25);
+}
+.shadow-2xl {
+  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.25);
+}
+.shadow-inner {
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.shadow {
+  @extend .shadow-md;
+}
+
+.card {
+  @extend .bg-light,
+    .dark\:bg-dark,
+    .text-dark,
+    .dark\:text-light,
+    .p-3,
+    .rounded-lg;
+  transition: box-shadow 0.125s ease-in-out;
+  &:hover {
+    // @extend .shadow;
+  }
 }

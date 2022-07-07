@@ -76,6 +76,29 @@
     width: $i * 25%;
   }
 }
+@for $i from 1 through 5 {
+  .h-#{$i}\/5 {
+    height: $i * 25%;
+  }
+  .w-#{$i}\/5 {
+    width: $i * 25%;
+  }
+}
+.w-full {
+  width: 100%;
+}
+.h-full {
+  height: 100%;
+}
+
+@for $i from 0 through 20 {
+  .w-#{$i} {
+    width: $i * 2.5rem;
+  }
+  .h-#{$i} {
+    height: $i * 2.5rem;
+  }
+}
 
 @each $key, $value in $radius {
   .rounded-#{$key} {
