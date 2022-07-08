@@ -29,36 +29,37 @@ const SideNav = (props) => {
   const top = props.top || "3rem";
   const { t } = useTranslation();
 
-  const RoutLink = ({ route }) => {
+  const RoutLink = ({ route, parent, ...props }) => {
+    const index = parent ? parent + route.index : route.index;
     return (
       <React.Fragment>
-        {(route.index && (
+        {(route.routes && (
+          <div>
+            <div
+              toggle="collapse"
+              target={`#${route.name}`}
+              className={`slide-up link p-2 text-center text-${config.primaryColor}-800 dark:text-${config.primaryColor}-200 hover:bg-${config.primaryColor}-200 hover:text-${config.primaryColor}-600`}
+            >
+              {/* <img src={route.icon} alt="" /> */}
+              <img src={route.icon} alt="" />
+              <div>{t(route.name)}</div>
+            </div>
+            <div className="pl-3" id={route.name}>
+              {route.routes.map((r) => (
+                <RoutLink key={r.name} route={r} parent={index} />
+              ))}
+            </div>
+          </div>
+        )) || (
           <Link
-            to={route.index}
+            to={parent ? parent + route.index : route.index}
             className={`slide-up link p-2 text-center text-${config.primaryColor}-800 dark:text-${config.primaryColor}-200 hover:bg-${config.primaryColor}-200 hover:text-${config.primaryColor}-600`}
           >
             {/* <img src={route.icon} alt="" /> */}
             <img src={route.icon} alt="" />
             <div>{t(route.name)}</div>
           </Link>
-        )) || (
-          <div
-            toggle="collapse"
-            target={`.${route.name}`}
-            className={`slide-up link p-2 text-center text-${config.primaryColor}-500 dark:text-${config.primaryColor}-200 hover:bg-${config.primaryColor}-200 hover:text-${config.primaryColor}-600`}
-          >
-            <img src={route.icon} alt="" />
-            <div>{t(route.name)}</div>
-          </div>
         )}
-        {route.routes &&
-          route.routes.map((child, index) => {
-            return (
-              <div key={index} className={` ${route.name}`}>
-                <RoutLink route={child} />
-              </div>
-            );
-          })}
       </React.Fragment>
     );
   };
@@ -66,7 +67,7 @@ const SideNav = (props) => {
   return (
     <SideNavContainer
       style={{ width, height: `calc(100vh - ${top})` }}
-      className={`dark:bg-${config.primaryColor}-800 bg-${config.primaryColor}-50 `}
+      className={`dark:bg-${config.primaryColor}-800 bg-${config.primaryColor}-50 ${props.className}`}
     >
       {routes.map((route, index) => {
         return (

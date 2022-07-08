@@ -27,6 +27,40 @@ const routes = [
     icon: componentIcon,
   },
   {
+    index: "/nested",
+    element: <Settings />,
+    name: "nested",
+    icon: settingsIcon,
+    routes: [
+      {
+        index: "/component",
+        element: <Component />,
+        name: "component",
+        routes: [
+          {
+            index: "/component",
+            element: <Component />,
+            name: "component",
+            icon: componentIcon,
+          },
+          {
+            index: "/settings",
+            element: <Settings />,
+            name: "settings",
+            icon: settingsIcon,
+          },
+        ],
+        icon: componentIcon,
+      },
+      {
+        index: "/settings",
+        element: <Settings />,
+        name: "settings",
+        icon: settingsIcon,
+      },
+    ],
+  },
+  {
     index: "/settings",
     element: <Settings />,
     name: "settings",

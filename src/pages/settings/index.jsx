@@ -19,7 +19,11 @@ const Settings = () => {
     <SettingsStyled>
       <Card>
         <div className="text-lg text-center my-3 ">
-          <span className="outline-cyan-500  px-3 py-1 rounded-lg">theme</span>
+          <span
+            className={`outline-${config.primaryColor}-500  px-3 py-1 rounded-lg`}
+          >
+            theme
+          </span>
         </div>
         <div className="flex justify-center gap-3">
           <Button
@@ -43,7 +47,9 @@ const Settings = () => {
         </div>
         <div className="w-full h-18">
           <div className="text-lg text-center my-3 ">
-            <span className="outline-cyan-500  px-3 py-1 rounded-lg">
+            <span
+              className={`outline-${config.primaryColor}-500  px-3 py-1 rounded-lg`}
+            >
               primary color
             </span>
           </div>

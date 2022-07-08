@@ -9,17 +9,26 @@ import routes from "./routes";
 import SideNav from "./components/side-nav";
 import TopBar from "./components/top-bar";
 import NotFound from "./components/not-found";
-const View = (props) => {
-  const parent = props.parent || "";
+import { flattenDeep } from "lodash";
+const recPath = (path, parent) => {
+  const index = parent ? parent + path.index : path.index;
+  if (!path.routes) return parent ? { ...path, index } : path;
+  const routes = [];
+  return path.routes.map((r) => recPath(r, index));
 };
 
-const myRoutes = routes.filter((route) => route.index);
+const getFlattenRoutes = (routes) => {
+  return flattenDeep(routes.map((r) => recPath(r)));
+};
+
+const flattenRoutes = getFlattenRoutes(routes);
 
 const RouterView = () => {
   const linkClass = "outline-cyan-500";
+
   return (
     <Routes>
-      {myRoutes.map((route, index) => {
+      {flattenRoutes.map((route, index) => {
         return <Route key={index} path={route.index} element={route.element} />;
       })}
       <Route path="*" element={<NotFound />} />
@@ -49,7 +58,7 @@ function App() {
       >
         <TopBar height="3rem" />
         <div className="flex">
-          <SideNav width="10rem" />
+          <SideNav className="p-3" width="15rem" />
           <div className="flex w-full justify-center align-center  text-dark">
             <RouterView />
           </div>
