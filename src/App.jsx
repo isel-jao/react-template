@@ -36,6 +36,22 @@ const RouterView = () => {
   );
 };
 
+const MainLayout = ({ config }) => {
+  return (
+    <div
+      className={`dark:bg-${config.primaryColor}-900 dark:text-${config.primaryColor}-200 bg-${config.primaryColor}-100 text-${config.primaryColor}-800 `}
+    >
+      <TopBar className="shadow-sm" height="3rem" />
+      <div className="flex">
+        <SideNav className="shadow-sm px-3 " width="15rem" />
+        <div className="flex w-full justify-center align-center">
+          <RouterView />
+        </div>
+      </div>
+    </div>
+  );
+};
+
 function App() {
   const config = useSelector((state) => state.config);
   const { t } = useTranslation();
@@ -52,18 +68,8 @@ function App() {
     });
   }, []);
   return (
-    <div className={`App ${config.theme}`}>
-      <div
-        className={`h-screen  dark:bg-${config.primaryColor}-900 dark:text-${config.primaryColor}-200 bg-${config.primaryColor}-100 text-${config.primaryColor}-800`}
-      >
-        <TopBar height="3rem" />
-        <div className="flex">
-          <SideNav className="p-3" width="15rem" />
-          <div className="flex w-full justify-center align-center  text-dark">
-            <RouterView />
-          </div>
-        </div>
-      </div>
+    <div className={`App ${config.theme} `}>
+      <MainLayout config={config} />
     </div>
   );
 }

@@ -45,6 +45,31 @@ const Settings = () => {
             dark
           </Button>
         </div>
+        <br />
+        <div className="text-lg text-center my-3 ">
+          <span
+            className={`outline-${config.primaryColor}-500  px-3 py-1 rounded-lg`}
+          >
+            languages
+          </span>
+        </div>
+        <div className="flex justify-center gap-2">
+          <Button
+            color="blue"
+            outline
+            onClick={() => dispatch({ type: "SET_LANG", payload: "en" })}
+          >
+            english
+          </Button>
+          <Button
+            color="sky"
+            outline
+            onClick={() => dispatch({ type: "SET_LANG", payload: "fr" })}
+          >
+            francais
+          </Button>
+        </div>
+        <br />
         <div className="w-full h-18">
           <div className="text-lg text-center my-3 ">
             <span

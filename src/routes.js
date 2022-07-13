@@ -1,11 +1,11 @@
 import Home from "./pages/home";
 import About from "./pages/about";
-import Component from "./pages/component";
+import Test from "./pages/test";
 import HomeIcon from "./assets/icons/Solid/General/Home.svg";
 import aboutIcon from "./assets/icons/Solid/Devices/Binocular.svg";
-import componentIcon from "./assets/icons/Solid/Interface/Apps.svg";
 import Settings from "./pages/settings";
 import settingsIcon from "./assets/icons/Solid/Interface/Settings-alt.svg";
+import testIcon from "./assets/icons/Solid/Status/Fire.svg";
 const routes = [
   {
     name: "home",
@@ -19,46 +19,11 @@ const routes = [
     element: <About />,
     icon: aboutIcon,
   },
-
   {
-    index: "/component",
-    element: <Component />,
-    name: "component",
-    icon: componentIcon,
-  },
-  {
-    index: "/nested",
-    element: <Settings />,
-    name: "nested",
-    icon: settingsIcon,
-    routes: [
-      {
-        index: "/component",
-        element: <Component />,
-        name: "component",
-        routes: [
-          {
-            index: "/component",
-            element: <Component />,
-            name: "component",
-            icon: componentIcon,
-          },
-          {
-            index: "/settings",
-            element: <Settings />,
-            name: "settings",
-            icon: settingsIcon,
-          },
-        ],
-        icon: componentIcon,
-      },
-      {
-        index: "/settings",
-        element: <Settings />,
-        name: "settings",
-        icon: settingsIcon,
-      },
-    ],
+    index: "/test",
+    element: <Test />,
+    name: "test",
+    icon: testIcon,
   },
   {
     index: "/settings",

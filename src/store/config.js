@@ -7,8 +7,10 @@ const defaultState = {
 
 function configReducer(state = defaultState, action) {
   switch (action.type) {
-    case "SET_THEME":
+    case "SET_THEME": {
+      state.theme = action.payload;
       return { ...state, theme: action.payload };
+    }
     case "SET_PRIMARY_COLOR":
       return { ...state, primaryColor: action.payload };
     case "SET_LANG":
